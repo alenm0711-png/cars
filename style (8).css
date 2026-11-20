@@ -1,0 +1,47 @@
+:root {
+  --night: #07091a;
+  --panel: rgba(10, 13, 32, 0.88);
+  --taxi: #ffc928;
+  --neon: #ff3d81;
+  --ok: #3dffa8;
+  --text: #eef0ff;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--night); color: var(--text);
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif; touch-action: none; user-select: none; }
+canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+[hidden] { display: none !important; }
+
+#hud { position: fixed; top: 10px; left: 10px; right: 10px; display: flex; gap: 8px; flex-wrap: wrap; pointer-events: none; }
+.box { background: var(--panel); border: 2px solid var(--taxi); border-radius: 10px; padding: 6px 12px; font-weight: 700; font-size: 15px; }
+#lives { letter-spacing: 3px; color: var(--neon); border-color: var(--neon); }
+#fare.on { border-color: var(--ok); color: var(--ok); }
+
+#msg { position: fixed; top: 28%; left: 0; right: 0; text-align: center; font-size: 26px; font-weight: 800;
+  color: var(--taxi); text-shadow: 0 0 12px rgba(255, 201, 40, 0.7); pointer-events: none; opacity: 0; transition: opacity 0.25s; }
+#msg.show { opacity: 1; }
+
+#touch { position: fixed; bottom: 18px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 18px; }
+#touch button { width: 88px; height: 88px; border-radius: 50%; border: 3px solid var(--taxi); background: var(--panel);
+  color: var(--taxi); font-size: 34px; }
+#touch button:active { background: var(--taxi); color: var(--night); }
+
+#overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(4, 5, 14, 0.55); padding: 16px; }
+#overlay.hide { display: none; }
+.panel { width: min(440px, 100%); background: var(--panel); border: 3px solid var(--taxi); border-radius: 16px;
+  padding: 24px; text-align: center; box-shadow: 0 0 40px rgba(255, 61, 129, 0.35); }
+h1 { margin: 0 0 10px; font-size: 40px; color: var(--taxi); text-shadow: 3px 3px 0 var(--neon); }
+.panel p { margin: 8px 0; line-height: 1.45; }
+#result { color: var(--ok); font-weight: 700; }
+.wallet b { color: var(--taxi); font-size: 20px; }
+.shop { display: grid; gap: 8px; margin: 14px 0; }
+.shop button, .go { font: inherit; font-weight: 700; border-radius: 10px; padding: 10px 14px; cursor: pointer;
+  border: 2px solid var(--taxi); background: transparent; color: var(--text); }
+.shop button:hover:not(:disabled) { background: rgba(255, 201, 40, 0.15); }
+.shop button:disabled { opacity: 0.45; cursor: not-allowed; }
+.go { width: 100%; background: var(--taxi); color: var(--night); font-size: 18px; padding: 14px; }
+.go:hover { filter: brightness(1.1); }
+.go:focus-visible, .shop button:focus-visible { outline: 3px solid var(--neon); outline-offset: 2px; }
+.hint { font-size: 13px; opacity: 0.7; }
+
+@media (max-width: 480px) { h1 { font-size: 32px; } .box { font-size: 13px; padding: 5px 9px; } }
